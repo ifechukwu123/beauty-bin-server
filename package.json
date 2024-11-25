@@ -28,7 +28,8 @@
 		"migrate": "npx knex migrate:latest",
 		"migrate:up": "npx knex migrate:up",
 		"migrate:down": "npx knex migrate:down",
-		"rollback": "npx knex migrate:rollback"
+		"rollback": "npx knex migrate:rollback",
+		"seed": "npx knex seed:run"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",

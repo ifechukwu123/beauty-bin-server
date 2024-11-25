@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
+app.use("/products");
+
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);
 });
