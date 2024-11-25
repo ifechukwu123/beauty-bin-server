@@ -101,7 +101,7 @@ const productData = [
 		batchNumber: "232abd4",
 		category_id: 1,
 		dateOpened: "2023-11-24",
-		expirationDate: "2024-11-29",
+		expirationDate: "2024-12-29",
 		user_id: 2,
 	},
 	{
@@ -120,8 +120,8 @@ const productData = [
 		brand: "Morphe",
 		batchNumber: "232abd4",
 		category_id: 3,
-		dateOpened: "2018-11-08",
-		expirationDate: "2021-01-21",
+		dateOpened: "2019-11-08",
+		expirationDate: "2024-12-29",
 		user_id: 1,
 	},
 	{
@@ -131,7 +131,7 @@ const productData = [
 		batchNumber: "232abd4",
 		category_id: 4,
 		dateOpened: "2021-01-21",
-		expirationDate: "2023-01-21",
+		expirationDate: "2024-12-31",
 		user_id: 2,
 	},
 	{

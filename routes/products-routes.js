@@ -3,6 +3,19 @@ import * as controllers from "../controllers/products-controller.js";
 
 const router = express.Router();
 
-router.get("/", controllers.getAllProducts);
+router
+	.route("/")
+	.get(controllers.getAllProducts)
+	.post(controllers.addNewProduct);
+
+router
+	.route("/:id")
+	.get(controllers.getOneProduct)
+	.delete(controllers.deleteProduct)
+	.put(controllers.editProduct);
+
+router.get("/expiring-soon", controllers.getProductsExpiring);
+
+router.get("/expired", controllers.getProductsExpired);
 
 export default router;
