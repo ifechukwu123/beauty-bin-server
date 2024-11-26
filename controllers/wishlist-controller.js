@@ -10,7 +10,7 @@ const getWishlist = async (req, res) => {
 	try {
 		const wishlist = await knex("wishlist")
 			.where({ user_id: userId })
-			.select("id", "name", "brand");
+			.select("id", "name", "brand", "image");
 
 		res.json(wishlist);
 	} catch (error) {
@@ -21,13 +21,16 @@ const getWishlist = async (req, res) => {
 const addWishlistItem = async (req, res) => {
 	//verify user?
 
-	const { userId, name, brand } = req.body;
+	const { userId, name, brand, image } = req.body;
+
+	//validate request body
 
 	try {
 		const [newId] = await knex("wishlist").insert({
 			user_id: userId,
 			name: name,
 			brand: brand,
+			image: image,
 		});
 
 		const newItem = await knex("wishlist")

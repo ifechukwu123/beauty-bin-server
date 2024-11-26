@@ -13,6 +13,7 @@ export function up(knex) {
 			.onDelete("CASCADE")
 			.onUpdate("CASCADE");
 		table.string("name").notNullable();
+		table.string("image").notNullable();
 		table.string("brand").notNullable();
 		table.timestamp("created_at").defaultTo(knex.fn.now());
 	});

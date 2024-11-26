@@ -18,6 +18,7 @@ const getAllProducts = async (req, res) => {
 				"categories.name as category",
 				"brand",
 				"batchNumber",
+				"image",
 				"dateOpened",
 				"expirationDate"
 			);
@@ -49,6 +50,7 @@ const getProductsExpiring = async (req, res) => {
 				"batchNumber",
 				"categories.name as category",
 				"dateOpened",
+				"image",
 				"expirationDate",
 				"status as notification_status"
 			);
@@ -80,6 +82,7 @@ const getProductsExpired = async (req, res) => {
 				"batchNumber",
 				"categories.name as category",
 				"dateOpened",
+				"image",
 				"expirationDate",
 				"status as notification_status"
 			);
@@ -109,6 +112,7 @@ const getOneProduct = async (req, res) => {
 				"products.name",
 				"brand",
 				"batchNumber",
+				"image",
 				"categories.name as category",
 				"dateOpened",
 				"expirationDate"
@@ -143,6 +147,26 @@ const addNewProduct = async (req, res) => {
 
 	//add validation for request body
 
+	let image;
+
+	switch (category) {
+		case "face":
+			image = "/images/face.png";
+			break;
+
+		case "eye":
+			image = "/images/eye.png";
+			break;
+
+		case "lip":
+			image = "/images/lip.png";
+			break;
+
+		default:
+			image = "/images/other.png";
+			break;
+	}
+
 	try {
 		//Get category id
 		const categoryID = await knex("categories").where({ name: category });
@@ -154,6 +178,7 @@ const addNewProduct = async (req, res) => {
 			category_id: categoryID[0].id,
 			user_id: userId,
 			dateOpened: dateOpened,
+			image: image,
 			expirationDate: expirationDate,
 		});
 
@@ -167,6 +192,7 @@ const addNewProduct = async (req, res) => {
 				"batchNumber",
 				"categories.name as category",
 				"dateOpened",
+				"image",
 				"expirationDate"
 			);
 		res.status(201).json(product);
@@ -255,6 +281,7 @@ const editProduct = async (req, res) => {
 				"brand",
 				"batchNumber",
 				"categories.name as category",
+				"image",
 				"dateOpened",
 				"expirationDate"
 			);

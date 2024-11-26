@@ -21,6 +21,7 @@ export function up(knex) {
 			.onDelete("CASCADE");
 		table.string("name").notNullable();
 		table.string("brand").notNullable();
+		table.string("image").notNullable();
 		table.string("batchNumber").defaultTo(null);
 		table.date("dateOpened").defaultTo(null);
 		table.date("expirationDate").defaultTo(null);

@@ -12,6 +12,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2023-03-24",
 		expirationDate: "2025-03-24",
+		image: "/images/image1.png",
 		user_id: 1,
 	},
 	{
@@ -22,6 +23,7 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2022-09-24",
 		expirationDate: "2026-09-24",
+		image: "/images/image2.png",
 		user_id: 2,
 	},
 	{
@@ -32,6 +34,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2020-09-19",
 		expirationDate: "2022-10-19",
+		image: "/images/image3.png",
 		user_id: 2,
 	},
 	{
@@ -42,6 +45,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2020-04-19",
 		expirationDate: "2021-11-19",
+		image: "/images/image4.png",
 		user_id: 1,
 	},
 	{
@@ -52,6 +56,7 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2024-01-21",
 		expirationDate: "2027-01-21",
+		image: "/images/image5.png",
 		user_id: 1,
 	},
 	{
@@ -62,6 +67,7 @@ const productData = [
 		category_id: 2,
 		dateOpened: "2023-01-21",
 		expirationDate: "2024-12-21",
+		image: "/images/image6.png",
 		user_id: 1,
 	},
 	{
@@ -72,6 +78,7 @@ const productData = [
 		category_id: 2,
 		dateOpened: "2019-12-21",
 		expirationDate: "2021-12-28",
+		image: "/images/image7.png",
 		user_id: 1,
 	},
 	{
@@ -82,6 +89,7 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2024-10-28",
 		expirationDate: "2026-06-14",
+		image: "/images/image8.png",
 		user_id: 2,
 	},
 	{
@@ -92,16 +100,18 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2020-06-14",
 		expirationDate: "2022-09-04",
+		image: "/images/image9.png",
 		user_id: 2,
 	},
 	{
 		id: 10,
-		name: "Mini Orgasm Blush and Lip Duo",
+		name: "Afterglow Liquid Blush",
 		brand: "NARS",
 		batchNumber: "232abd4",
 		category_id: 1,
 		dateOpened: "2023-11-24",
 		expirationDate: "2024-12-29",
+		image: "/images/image10.png",
 		user_id: 2,
 	},
 	{
@@ -112,6 +122,7 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2024-01-29",
 		expirationDate: "2024-11-08",
+		image: "/images/image11.png",
 		user_id: 1,
 	},
 	{
@@ -122,6 +133,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2019-11-08",
 		expirationDate: "2024-12-29",
+		image: "/images/image12.png",
 		user_id: 1,
 	},
 	{
@@ -132,6 +144,7 @@ const productData = [
 		category_id: 4,
 		dateOpened: "2021-01-21",
 		expirationDate: "2024-12-31",
+		image: "/images/image13.png",
 		user_id: 2,
 	},
 	{
@@ -142,6 +155,7 @@ const productData = [
 		category_id: 2,
 		dateOpened: "2023-01-21",
 		expirationDate: "2025-01-21",
+		image: "/images/image14.png",
 		user_id: 2,
 	},
 	{
@@ -152,6 +166,7 @@ const productData = [
 		category_id: 1,
 		dateOpened: "2024-01-21",
 		expirationDate: "2024-11-21",
+		image: "/images/image15.png",
 		user_id: 1,
 	},
 	{
@@ -162,6 +177,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2024-11-21",
 		expirationDate: "2026-12-21",
+		image: "/images/image16.png",
 		user_id: 1,
 	},
 	{
@@ -172,6 +188,7 @@ const productData = [
 		category_id: 3,
 		dateOpened: "2023-12-21",
 		expirationDate: "2025-10-21",
+		image: "/images/image17.png",
 		user_id: 2,
 	},
 	{
@@ -180,14 +197,16 @@ const productData = [
 		brand: "HAUS LABS BY LADY GAGA",
 		batchNumber: "232abd4",
 		category_id: 1,
+		image: "/images/image18.png",
 		user_id: 1,
 	},
 	{
 		id: 19,
-		name: "Color Fuse Talc-Free Blush Powder With Fermented Arnica",
-		brand: "HAUS LABS BY LADY GAGA",
+		name: "Almost Lipstick",
+		brand: "CLINIQUE",
 		batchNumber: "232abd4",
-		category_id: 1,
+		category_id: 3,
+		image: "/images/image19.png",
 		user_id: 2,
 	},
 	{
@@ -196,6 +215,7 @@ const productData = [
 		brand: "Charlotte Tilbury",
 		batchNumber: "232abd4",
 		category_id: 1,
+		image: "/images/image20.png",
 		user_id: 2,
 	},
 ];
