@@ -6,7 +6,7 @@ const knex = initKnex(config);
 const getAllProducts = async (req, res) => {
 	//verify user
 
-	const { userId } = req.body;
+	const userId = 1;
 
 	try {
 		const products = await knex("products")
@@ -25,7 +25,7 @@ const getAllProducts = async (req, res) => {
 		res.json(products);
 	} catch (error) {
 		res.status(500).json({
-			message: `Unable to retrieve products for user with id ${id}: ${error}`,
+			message: `Unable to retrieve products for user with id ${userId}: ${error}`,
 		});
 	}
 };
@@ -33,7 +33,7 @@ const getAllProducts = async (req, res) => {
 const getProductsExpiring = async (req, res) => {
 	//verify user
 
-	const { userId } = req.body;
+	const userId = 1;
 
 	try {
 		const expiringProducts = await knex("notifications")
@@ -65,7 +65,7 @@ const getProductsExpiring = async (req, res) => {
 const getProductsExpired = async (req, res) => {
 	//verify user
 
-	const { userId } = req.body;
+	const userId = 1;
 
 	try {
 		const expiredProducts = await knex("notifications")
@@ -97,7 +97,7 @@ const getProductsExpired = async (req, res) => {
 const getOneProduct = async (req, res) => {
 	//verify user
 
-	const { userId } = req.body;
+	const userId = 1;
 	const { id } = req.params;
 
 	try {
@@ -134,18 +134,12 @@ const getOneProduct = async (req, res) => {
 
 const addNewProduct = async (req, res) => {
 	//verify user
+	const userId = 1;
 
-	const {
-		userId,
-		name,
-		brand,
-		batchNumber,
-		category,
-		dateOpened,
-		expirationDate,
-	} = req.body;
+	const { name, brand, batchNumber, category, dateOpened, expirationDate } =
+		req.body;
 
-	//add validation for request body
+	//add validation for request body & trim strings
 
 	let image;
 
@@ -195,7 +189,7 @@ const addNewProduct = async (req, res) => {
 				"image",
 				"expirationDate"
 			);
-		res.status(201).json(product);
+		res.status(201).json(product[0]);
 	} catch (error) {
 		res
 			.status(500)
@@ -206,7 +200,7 @@ const addNewProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 	//verify user
 
-	const { userId } = req.body;
+	const userId = 1;
 	const { id } = req.params;
 
 	try {
@@ -233,16 +227,10 @@ const deleteProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
 	//verify user
+	const userId = 1;
 
-	const {
-		userId,
-		name,
-		brand,
-		batchNumber,
-		category,
-		dateOpened,
-		expirationDate,
-	} = req.body;
+	const { name, brand, batchNumber, category, dateOpened, expirationDate } =
+		req.body;
 	const { id } = req.params;
 
 	//verify request body

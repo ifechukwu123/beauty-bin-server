@@ -5,7 +5,7 @@ const knex = initKnex(config);
 
 const getWishlist = async (req, res) => {
 	//verify user
-	const { userId } = req.body;
+	const userId = 1;
 
 	try {
 		const wishlist = await knex("wishlist")
@@ -20,8 +20,9 @@ const getWishlist = async (req, res) => {
 
 const addWishlistItem = async (req, res) => {
 	//verify user?
+	const userId = 1;
 
-	const { userId, name, brand, image } = req.body;
+	const { name, brand, image } = req.body;
 
 	//validate request body
 
@@ -45,8 +46,8 @@ const addWishlistItem = async (req, res) => {
 
 const deleteWishlistItem = async (req, res) => {
 	//verify user?
+	const userId = 1;
 
-	const { userId } = req.body;
 	const { id } = req.params;
 
 	try {
