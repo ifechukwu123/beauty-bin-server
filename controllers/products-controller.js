@@ -274,7 +274,7 @@ const editProduct = async (req, res) => {
 				"expirationDate"
 			);
 
-		res.json(product);
+		res.json(product[0]);
 	} catch (error) {
 		res
 			.status(500)

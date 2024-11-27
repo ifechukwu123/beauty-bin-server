@@ -36,7 +36,7 @@ const addWishlistItem = async (req, res) => {
 
 		const newItem = await knex("wishlist")
 			.where({ id: newId })
-			.select("id", "name", "brand");
+			.select("id", "name", "brand", "image");
 
 		res.status(201).json(newItem[0]);
 	} catch (error) {
