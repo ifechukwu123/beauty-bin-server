@@ -1,0 +1,34 @@
+import nodemailer from "nodemailer";
+import "dotenv/config";
+//import { render } from "@react-email/render;
+
+//Create nodemailer transporter
+const transporter = nodemailer.createTransport({
+	service: "Gmail",
+	host: "smtp.gmail.com",
+	port: 587,
+	secure: false,
+	auth: {
+		user: process.env.SENDER_EMAIL,
+		pass: process.env.EMAIL_PASS,
+	},
+});
+
+const sendEmailNotification = async (to, subject, html, attachments) => {
+	//const emailHtml = await render(html);
+
+	try {
+		await transporter.sendMail({
+			from: { name: "Beauty Bin ", address: process.env.SENDER_EMAIL },
+			to: to,
+			subject: subject,
+			html: html,
+			//attachments: attachments,
+		});
+		console.log(`Email to ${to} has been sent successfully`);
+	} catch (error) {
+		console.error(`Unable to send email to ${to}: ${error}`);
+	}
+};
+
+export default sendEmailNotification;
