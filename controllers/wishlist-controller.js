@@ -22,23 +22,31 @@ const addWishlistItem = async (req, res) => {
 	//verify user?
 	const userId = 1;
 
-	const { name, brand, image } = req.body;
+	const { name, brand, image, id } = req.body;
 
 	//validate request body
 
 	try {
-		const [newId] = await knex("wishlist").insert({
-			user_id: userId,
-			name: name,
-			brand: brand,
-			image: image,
-		});
+		//search if the item is already in the wishlist
+		const wishItem = await knex("wishlist").where({ product_id: id });
 
-		const newItem = await knex("wishlist")
-			.where({ id: newId })
-			.select("id", "name", "brand", "image");
+		if (wishItem.length === 0) {
+			const [newId] = await knex("wishlist").insert({
+				user_id: userId,
+				name: name,
+				brand: brand,
+				product_id: id,
+				image: image,
+			});
 
-		res.status(201).json(newItem[0]);
+			const newItem = await knex("wishlist")
+				.where({ id: newId })
+				.select("id", "name", "product_id", "brand", "image");
+
+			res.status(201).json(newItem[0]);
+		} else {
+			res.status(200).json(wishItem[0]);
+		}
 	} catch (error) {
 		res.status(500).json({ message: `Unable to add to wishlist: ${error}` });
 	}

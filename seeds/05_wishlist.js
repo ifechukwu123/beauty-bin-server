@@ -10,6 +10,7 @@ const wishlistData = [
 		brand: "SEPHORA",
 		image: "/images/wish1.png",
 		user_id: 1,
+		product_id: 2,
 	},
 	{
 		id: 2,
@@ -17,6 +18,7 @@ const wishlistData = [
 		brand: "Charlotte Tilbury",
 		image: "/images/wish2.png",
 		user_id: 1,
+		product_id: 4,
 	},
 	{
 		id: 3,
@@ -24,6 +26,7 @@ const wishlistData = [
 		brand: "Glossier",
 		image: "/images/wish3.png",
 		user_id: 1,
+		product_id: 6,
 	},
 	{
 		id: 4,
@@ -31,6 +34,7 @@ const wishlistData = [
 		brand: "SEPHORA",
 		image: "/images/wish4.png",
 		user_id: 2,
+		product_id: 8,
 	},
 	{
 		id: 5,
@@ -38,6 +42,7 @@ const wishlistData = [
 		brand: "REFY",
 		image: "/images/wish5.png",
 		user_id: 2,
+		product_id: 10,
 	},
 	{
 		id: 6,
@@ -45,6 +50,7 @@ const wishlistData = [
 		brand: "Charlotte Tilbury",
 		image: "/images/wish6.png",
 		user_id: 1,
+		product_id: 12,
 	},
 	{
 		id: 7,
@@ -52,6 +58,7 @@ const wishlistData = [
 		brand: "Morphe",
 		image: "/images/wish7.png",
 		user_id: 2,
+		product_id: 14,
 	},
 	{
 		id: 8,
@@ -59,6 +66,7 @@ const wishlistData = [
 		brand: "MILK MAKEUP",
 		image: "/images/wish8.png",
 		user_id: 2,
+		product_id: 16,
 	},
 	{
 		id: 9,
@@ -66,6 +74,7 @@ const wishlistData = [
 		brand: "HAUS LABS BY LADY GAGA",
 		image: "/images/wish9.png",
 		user_id: 2,
+		product_id: 18,
 	},
 ];
 

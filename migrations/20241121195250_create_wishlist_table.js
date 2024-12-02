@@ -12,6 +12,7 @@ export function up(knex) {
 			.references("users.id")
 			.onDelete("CASCADE")
 			.onUpdate("CASCADE");
+		table.integer("product_id").unsigned().notNullable();
 		table.string("name").notNullable();
 		table.string("image").notNullable();
 		table.string("brand").notNullable();

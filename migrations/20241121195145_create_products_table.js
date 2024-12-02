@@ -23,8 +23,8 @@ export function up(knex) {
 		table.string("brand").notNullable();
 		table.string("image").notNullable();
 		table.string("batchNumber").defaultTo(null);
-		table.date("dateOpened").defaultTo(null);
-		table.date("expirationDate").defaultTo(null);
+		table.date("dateOpened").notNullable();
+		table.date("expirationDate").notNullable();
 		table.timestamp("created_at").defaultTo(knex.fn.now());
 		table
 			.timestamp("updated_at")

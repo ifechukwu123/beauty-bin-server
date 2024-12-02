@@ -16,7 +16,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 2,
+		id: 3,
 		name: "Dew Blush Liquid Cream Blush",
 		brand: "Saie",
 		batchNumber: "232abd4",
@@ -27,7 +27,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 3,
+		id: 5,
 		name: "Pout Preserve Hydrating Peptide Lip Treatment",
 		brand: "OLEHENRIKSEN",
 		batchNumber: "232abd4",
@@ -38,7 +38,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 4,
+		id: 7,
 		name: "Soft Pinch Tinted Lip Oil Stain",
 		brand: "Rare Beauty",
 		batchNumber: "232abd4",
@@ -49,7 +49,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 5,
+		id: 9,
 		name: "Dew Bronze Soft-Focus Sculpting Liquid Bronzer",
 		brand: "Saie",
 		batchNumber: "232abd4",
@@ -60,7 +60,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 6,
+		id: 11,
 		name: "Brow Harmony Flexible Lifting and Laminating Eyebrow Gel",
 		brand: "Rare Beauty",
 		batchNumber: "232abd4",
@@ -71,7 +71,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 7,
+		id: 13,
 		name: "Mini MakeWaves Lengthening + Volumizing Mascara",
 		brand: "Tower 28 Beauty",
 		batchNumber: "232abd4",
@@ -82,7 +82,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 8,
+		id: 15,
 		name: "Flush Balm Cream Blush",
 		brand: "MERIT",
 		batchNumber: "232abd4",
@@ -93,7 +93,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 9,
+		id: 17,
 		name: "OneLiner Lip Liner + Eyeliner + Cheek Pencil",
 		brand: "Tower 28 Beauty",
 		batchNumber: "232abd4",
@@ -104,7 +104,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 10,
+		id: 19,
 		name: "Afterglow Liquid Blush",
 		brand: "NARS",
 		batchNumber: "232abd4",
@@ -115,7 +115,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 11,
+		id: 21,
 		name: "Reveal The Real 12HR Soft Radiant Skin Tint",
 		brand: "NARS",
 		batchNumber: "232abd4",
@@ -126,7 +126,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 12,
+		id: 23,
 		name: "Soulmatte Filling Gel Lip Liner",
 		brand: "Morphe",
 		batchNumber: "232abd4",
@@ -137,7 +137,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 13,
+		id: 25,
 		name: "Hot Cocoa Lip Sleeping Mask",
 		brand: "SEPHORA",
 		batchNumber: "232abd4",
@@ -148,7 +148,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 14,
+		id: 27,
 		name: "Ethereal Eyes Eyeshadow Palette: Moonlight",
 		brand: "MAKEUP BY MARIO",
 		batchNumber: "232abd4",
@@ -159,7 +159,7 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 15,
+		id: 29,
 		name: "Super Serum Skin Tint SPF 40 Foundation",
 		brand: "ILIA",
 		batchNumber: "232abd4",
@@ -170,7 +170,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 16,
+		id: 30,
 		name: "Ultra Suede® Sculpting Lip Pencil",
 		brand: "MAKEUP BY MARIO",
 		batchNumber: "232abd4",
@@ -181,7 +181,7 @@ const productData = [
 		user_id: 1,
 	},
 	{
-		id: 17,
+		id: 31,
 		name: "Precisely, My Brow Pencil Waterproof Eyebrow Definer",
 		brand: "Benefit Cosmetics",
 		batchNumber: "232abd4",
@@ -192,31 +192,37 @@ const productData = [
 		user_id: 2,
 	},
 	{
-		id: 18,
+		id: 32,
 		name: "Color Fuse Talc-Free Blush Powder With Fermented Arnica",
 		brand: "HAUS LABS BY LADY GAGA",
 		batchNumber: "232abd4",
 		category_id: 1,
+		dateOpened: "2023-12-21",
+		expirationDate: "2025-01-04",
 		image: "/images/image18.png",
 		user_id: 1,
 	},
 	{
-		id: 19,
+		id: 33,
 		name: "Almost Lipstick",
 		brand: "CLINIQUE",
 		batchNumber: "232abd4",
 		category_id: 3,
+		dateOpened: "2022-10-21",
+		expirationDate: "2025-01-03",
 		image: "/images/image19.png",
 		user_id: 2,
 	},
 	{
-		id: 20,
+		id: 34,
 		name: "Mini Airbrush Flawless Setting Spray",
 		brand: "Charlotte Tilbury",
 		batchNumber: "232abd4",
 		category_id: 1,
+		dateOpened: "2023-10-21",
+		expirationDate: "2025-01-02",
 		image: "/images/image20.png",
-		user_id: 2,
+		user_id: 1,
 	},
 ];
 
