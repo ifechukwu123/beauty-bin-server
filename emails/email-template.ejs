@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="application-name" content="Gmail" />
+		<title>You have expiring and/or expired products</title>
+		<link rel="stylesheet" href="./email.css" />
+	</head>
+	<body
+		style="
+			padding: 0px 200px 20px;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+			font-size: 16px;
+		"
+	>
+		<div style="background-color: #fffdfd; padding: 0px 175px 10px">
+			<img
+				src="cid:unique@nodemailer.com"
+				alt="A picture showing a woman clutching another woman's hand tenderly"
+				style="width: 100%"
+			/>
+			<p style="margin-bottom: 0">
+				We come in peace! It is time to let go of some of your products.
+			</p>
+		</div>
+
+		<% if (expired.length > 0) { %>
+		<div
+			style="background-color: #fffdfd; padding: 20px 100px; margin-top: 20px"
+		>
+			<h2
+				style="
+					margin: 0;
+					padding: 0 100px 20px;
+					border-bottom: 1.5px solid #dfdfdf;
+					text-align: center;
+				"
+			>
+				Expired Products
+			</h2>
+
+			<ul style="padding: 0px 100px">
+				<% expired.forEach(item => { %>
+				<li><%= item.name %></li>
+				<% }); %>
+			</ul>
+		</div>
+		<% } %> <% if (expiring.length > 0) { %>
+		<div
+			style="background-color: #fffdfd; padding: 20px 100px; margin-top: 20px"
+		>
+			<h2
+				style="
+					margin: 0;
+					padding: 0 100px 20px;
+					border-bottom: 1.5px solid #dfdfdf;
+					text-align: center;
+				"
+			>
+				Expiring Products
+			</h2>
+
+			<ul style="padding: 0px 100px">
+				<% expiring.forEach(item => { %>
+				<li><%= item.name %></li>
+				<% }); %>
+			</ul>
+		</div>
+		<% } %>
+	</body>
+</html>
