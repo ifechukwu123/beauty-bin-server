@@ -152,7 +152,7 @@ const addNewProduct = async (req, res) => {
 			image = "/images/eye.png";
 			break;
 
-		case "lip":
+		case "lips":
 			image = "/images/lip.png";
 			break;
 
