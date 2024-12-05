@@ -2,19 +2,17 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="application-name" content="Gmail" />
 		<title>You have expiring and/or expired products</title>
-		<link rel="stylesheet" href="./email.css" />
 	</head>
 	<body
 		style="
-			padding: 0px 200px 20px;
+			padding: 1.25rem 12.5rem;
 			font-family: Georgia, 'Times New Roman', Times, serif;
-			font-size: 16px;
+			font-size: 1rem;
 		"
 	>
-		<div style="background-color: #fffdfd; padding: 0px 175px 10px">
+		<div style="background-color: #fffdfd; padding: 0 10.9375rem 0.625rem">
 			<img
 				src="cid:unique@nodemailer.com"
 				alt="A picture showing a woman clutching another woman's hand tenderly"
@@ -26,13 +24,11 @@
 		</div>
 
 		<% if (expired.length > 0) { %>
-		<div
-			style="background-color: #fffdfd; padding: 20px 100px; margin-top: 20px"
-		>
+		<div style="background-color: #fffdfd; margin-top: 1.25rem">
 			<h2
 				style="
-					margin: 0;
-					padding: 0 100px 20px;
+					margin: 0 0 0.625rem;
+					padding: 1.25rem 6.25rem;
 					border-bottom: 1.5px solid #dfdfdf;
 					text-align: center;
 				"
@@ -40,20 +36,75 @@
 				Expired Products
 			</h2>
 
-			<ul style="padding: 0px 100px">
-				<% expired.forEach(item => { %>
-				<li><%= item.name %></li>
-				<% }); %>
-			</ul>
+			<table style="width: 100%">
+				<% for (let i = 0; i < expired.length; i += 2) { %>
+				<tr>
+					<td style="padding: 1.5625rem 0">
+						<% if (expired[i]) { %>
+						<a
+							href="<%= appUrl %>/products/<%= expired[i].id %>"
+							target="_blank"
+							style="text-decoration: none; color: black"
+						>
+							<div
+								style="
+									width: 12.5rem;
+									border-radius: 0.625rem;
+									border: 1px solid #f1ebeb;
+									padding: 1.5rem;
+									margin: 0 auto;
+								"
+							>
+								<img
+									src="cid:<%= expired[i].type %>@<%= expired[i].id %>"
+									alt="An image of <%= expired[i].name %> from <%= expired[i].brand %>"
+									style="width: 100%"
+								/>
+								<h3 style="margin-bottom: 0.625rem"><%= expired[i].brand %></h3>
+								<span><%= expired[i].name %></span>
+							</div>
+						</a>
+						<% } %>
+					</td>
+					<td>
+						<% if (expired[i + 1]) { %>
+						<a
+							href="<%= appUrl %>/products/<%= expired[i+1].id %>"
+							target="_blank"
+							style="text-decoration: none; color: black"
+						>
+							<div
+								style="
+									width: 12.5rem;
+									border-radius: 0.625rem;
+									border: 1px solid #f1ebeb;
+									padding: 1.5rem;
+									margin: 0 auto;
+								"
+							>
+								<img
+									src="cid:<%= expired[i+1].type%>@<%= expired[i+1].id %>"
+									alt="An image of <%= expired[i+1].name %> from <%= expired[i+1].brand %>"
+									style="width: 100%"
+								/>
+								<h3 style="margin-bottom: 0.625rem">
+									<%= expired[i+1].brand %>
+								</h3>
+								<span><%= expired[i+1].name %></span>
+							</div>
+						</a>
+						<% } %>
+					</td>
+				</tr>
+				<% } %>
+			</table>
 		</div>
 		<% } %> <% if (expiring.length > 0) { %>
-		<div
-			style="background-color: #fffdfd; padding: 20px 100px; margin-top: 20px"
-		>
+		<div style="background-color: #fffdfd; margin-top: 1.25rem">
 			<h2
 				style="
-					margin: 0;
-					padding: 0 100px 20px;
+					margin: 0 0 0.625rem;
+					padding: 1.25rem 6.25rem;
 					border-bottom: 1.5px solid #dfdfdf;
 					text-align: center;
 				"
@@ -61,11 +112,70 @@
 				Expiring Products
 			</h2>
 
-			<ul style="padding: 0px 100px">
-				<% expiring.forEach(item => { %>
-				<li><%= item.name %></li>
-				<% }); %>
-			</ul>
+			<table style="width: 100%">
+				<% for (let i = 0; i < expiring.length; i += 2) { %>
+				<tr>
+					<td style="padding: 1.5625rem 0">
+						<% if (expiring[i]) { %>
+						<a
+							href="<%= appUrl %>/products/<%= expiring[i].id %>"
+							target="_blank"
+							style="text-decoration: none; color: black"
+						>
+							<div
+								style="
+									width: 12.5rem;
+									border-radius: 0.625rem;
+									border: 1px solid #f1ebeb;
+									padding: 1.5rem;
+									margin: 0 auto;
+								"
+							>
+								<img
+									src="cid:<%= expiring[i].type %>@<%= expiring[i].id %>"
+									alt="An image of <%= expiring[i].name %> from <%= expiring[i].brand %>"
+									style="width: 100%"
+								/>
+								<h3 style="margin-bottom: 0.625rem">
+									<%= expiring[i].brand %>
+								</h3>
+								<span><%= expiring[i].name %></span>
+							</div>
+						</a>
+						<% } %>
+					</td>
+					<td>
+						<% if (expiring[i + 1]) { %>
+						<a
+							href="<%= appUrl %>/products/<%= expiring[i+1].id %>"
+							target="_blank"
+							style="text-decoration: none; color: black"
+						>
+							<div
+								style="
+									width: 12.5rem;
+									border-radius: 0.625rem;
+									border: 1px solid #f1ebeb;
+									padding: 1.5rem;
+									margin: 0 auto;
+								"
+							>
+								<img
+									src="cid:<%= expiring[i+1].type %>@<%= expiring[i+1].id %>"
+									alt="An image of <%= expiring[i+1].name %> from <%= expiring[i+1].brand %>"
+									style="width: 100%"
+								/>
+								<h3 style="margin-bottom: 0.625rem">
+									<%= expiring[i+1].brand %>
+								</h3>
+								<span><%= expiring[i+1].name %></span>
+							</div>
+						</a>
+						<% } %>
+					</td>
+				</tr>
+				<% } %>
+			</table>
 		</div>
 		<% } %>
 	</body>

@@ -20,13 +20,7 @@ const sendEmailNotification = async (to, subject, html, attachments) => {
 			to: to,
 			subject: subject,
 			html: html,
-			attachments: [
-				{
-					filename: "support.png",
-					path: "./public/images/support.png",
-					cid: "unique@nodemailer.com",
-				},
-			],
+			attachments: attachments,
 		});
 		console.log(`Email to ${to} has been sent successfully`);
 	} catch (error) {

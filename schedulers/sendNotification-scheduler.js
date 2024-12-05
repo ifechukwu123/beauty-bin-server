@@ -2,6 +2,7 @@ import initKnex from "knex";
 import config from "../knexfile.js";
 import fs from "fs";
 import ejs from "ejs";
+import "dotenv/config";
 import sendEmailNotification from "../sendEmailNotification.js";
 
 const knex = initKnex(config);
@@ -54,15 +55,34 @@ const sendNotification = async (io) => {
 				inAppMessageCount =
 					expiring.length > 0 ? expiring.length : expired.length;
 			}
+			const products = [...expiring, ...expired];
 
 			//Sending email
 			const htmlTemplate = fs.readFileSync(
 				"./emails/email-template.ejs",
 				"utf-8"
 			);
-			const data = { expiring: expiring, expired: expired };
+			const data = {
+				expiring: expiring,
+				expired: expired,
+				appUrl: process.env.CORS_ORIGIN,
+				port: process.env.PORT,
+			};
 			const html = ejs.render(htmlTemplate, data);
-			sendEmailNotification(user.email, subject, html);
+			let cidArray = products.map((product) => ({
+				filename: product.image,
+				path: `./public${product.image}`,
+				cid: `${product.type}@${product.id}`,
+			}));
+			const attachments = [
+				...cidArray,
+				{
+					filename: "support.png",
+					path: "./public/images/support.png",
+					cid: "unique@nodemailer.com",
+				},
+			];
+			sendEmailNotification(user.email, subject, html, attachments);
 
 			//Socket.io for in-app notification
 			io.emit("notification", {
@@ -71,7 +91,6 @@ const sendNotification = async (io) => {
 			}); //use io.to(socket.id).emit() to send to specific user
 
 			//update status fields in the table to read
-			const products = [...expiring, ...expired];
 			products.forEach(async (product) => {
 				await knex("notifications")
 					.where({ user_id: userId, id: product.id })
