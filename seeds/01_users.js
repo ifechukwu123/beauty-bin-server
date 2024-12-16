@@ -8,12 +8,12 @@ const userData = [
 	{
 		id: 1,
 		email: "ifeonuorah@gmail.com",
-		password: bcrypt.hashSync("1234", bcrypt.genSaltSync(10)),
+		password: bcrypt.hashSync("1234", 10),
 	},
 	{
 		id: 2,
 		email: "bunmi@gmail.com",
-		password: bcrypt.hashSync("helloworld", bcrypt.genSaltSync(10)),
+		password: bcrypt.hashSync("helloworld", 10),
 	},
 ];
 
