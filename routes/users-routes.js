@@ -7,6 +7,4 @@ router.post("/login", controller.loginUser);
 
 router.post("/signUp", controller.signUpUser);
 
-export function authorizeUser(req, res, next) {}
-
 export default router;

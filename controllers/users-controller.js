@@ -69,7 +69,7 @@ const loginUser = async (req, res) => {
 				.json({ message: `The password you entered is invalid` });
 		}
 
-		const jwtToken = jwt.sign({ id: user[0].id }, process.env.SECRET, {
+		const jwtToken = jwt.sign({ id: user[0].id }, process.env.TOKEN_SECRET, {
 			expiresIn: "1d",
 		});
 
@@ -79,4 +79,22 @@ const loginUser = async (req, res) => {
 	}
 };
 
-export { signUpUser, loginUser };
+const authorizeUser = async (req, res, next) => {
+	const { authorization } = req.headers; //what if authorization is undefined?
+	const jwtToken = authorization.split(" ")[1];
+
+	try {
+		const payload = jwt.verify(jwtToken, process.env.TOKEN_SECRET);
+		const { id } = payload;
+
+		const user = await knex("users").where({ id: id }).select("id", "email");
+
+		req.user = user[0];
+		next();
+	} catch (error) {
+		//what can i do if token is invalid?
+		res.status(400).send(`Unable to authorize user: ${error}`);
+	}
+};
+
+export { signUpUser, loginUser, authorizeUser };
