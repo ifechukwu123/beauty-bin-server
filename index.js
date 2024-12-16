@@ -7,6 +7,7 @@ import { createServer } from "node:http";
 import productRoutes from "./routes/products-routes.js";
 import categoryRoutes from "./routes/categories-routes.js";
 import wishlistRoutes from "./routes/wishlist-routes.js";
+import usersRoutes from "./routes/users-routes.js";
 import updateNotificationsTable from "./schedulers/updateNotificationsTable-scheduler.js";
 import sendNotification from "./schedulers/sendNotification-scheduler.js";
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.static("./public"));
 
+app.use("/users", usersRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/wishlist", wishlistRoutes);

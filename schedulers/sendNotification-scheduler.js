@@ -39,12 +39,10 @@ const sendNotification = async (io) => {
 
 			let subject;
 			let inAppMessage;
-			let inAppMessageCount;
 
 			if (expiring.length > 0 && expired.length > 0) {
 				subject = "You have new expiring & expired products!";
 				inAppMessage = { expired: expired, expiring: expiring };
-				inAppMessageCount = expired.length + expiring.length;
 			} else {
 				subject =
 					expiring.length > 0
@@ -52,8 +50,6 @@ const sendNotification = async (io) => {
 						: "You have new expired products!";
 				inAppMessage =
 					expiring.length > 0 ? { expiring: expiring } : { expired: expired };
-				inAppMessageCount =
-					expiring.length > 0 ? expiring.length : expired.length;
 			}
 			const products = [...expiring, ...expired];
 
@@ -87,7 +83,6 @@ const sendNotification = async (io) => {
 			//Socket.io for in-app notification
 			io.emit("notification", {
 				message: inAppMessage,
-				count: inAppMessageCount,
 			}); //use io.to(socket.id).emit() to send to specific user
 
 			//update status fields in the table to read

@@ -2,16 +2,21 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
+import bcrypt from "bcryptjs";
 
 const userData = [
-	{ id: 1, username: "Ife", email: "ifeonuorah@gmail.com", password: "1234" },
+	{
+		id: 1,
+		email: "ifeonuorah@gmail.com",
+		password: bcrypt.hashSync("1234", bcrypt.genSaltSync(10)),
+	},
 	{
 		id: 2,
-		username: "Bunmi",
 		email: "bunmi@gmail.com",
-		password: "helloworld",
+		password: bcrypt.hashSync("helloworld", bcrypt.genSaltSync(10)),
 	},
 ];
+
 export async function seed(knex) {
 	// Deletes ALL existing entries
 	await knex("users").del();
