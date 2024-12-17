@@ -162,6 +162,26 @@ const editProduct = async (req, res) => {
 
 	//verify request body
 
+	let image;
+
+	switch (category) {
+		case "face":
+			image = "/images/face.png";
+			break;
+
+		case "eye":
+			image = "/images/eye.png";
+			break;
+
+		case "lips":
+			image = "/images/lip.png";
+			break;
+
+		default:
+			image = "/images/other.png";
+			break;
+	}
+
 	try {
 		//Get category id
 		const categoryID = await knex("categories").where({ name: category });
@@ -177,6 +197,7 @@ const editProduct = async (req, res) => {
 				batchNumber: batchNumber,
 				brand: brand,
 				category_id: categoryID[0].id,
+				image: image,
 				dateOpened: dateOpened,
 				expirationDate: expirationDate,
 			});

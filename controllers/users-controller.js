@@ -98,8 +98,13 @@ const authorizeUser = async (req, res, next) => {
 		req.user = user[0];
 		next();
 	} catch (error) {
-		//what can i do if token is invalid? console.log(error)
-		res.status(400).send(`Unable to authorize user: ${error}`);
+		if (error.name === "JsonWebTokenError") {
+			return res.status(400).send("Token is invalid");
+		}
+		if (error.name === "TokenExpiredError") {
+			return res.status(401).send("Token is expired");
+		}
+		res.status(500).send(`Unable to authorize user: ${error}`);
 	}
 };
 
