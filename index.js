@@ -10,6 +10,7 @@ import wishlistRoutes from "./routes/wishlist-routes.js";
 import usersRoutes from "./routes/users-routes.js";
 import updateNotificationsTable from "./schedulers/updateNotificationsTable-scheduler.js";
 import sendNotification from "./schedulers/sendNotification-scheduler.js";
+import { authorizeUser } from "./controllers/users-controller.js";
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -25,9 +26,9 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.static("./public"));
 
 app.use("/users", usersRoutes);
-app.use("/products", productRoutes);
+app.use("/products", authorizeUser, productRoutes);
 app.use("/categories", categoryRoutes);
-app.use("/wishlist", wishlistRoutes);
+app.use("/wishlist", authorizeUser, wishlistRoutes);
 
 //Scheduled task
 cron.schedule(

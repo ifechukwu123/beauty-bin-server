@@ -1,6 +1,5 @@
 import express from "express";
 import * as controllers from "../controllers/products-controller.js";
-import { authorizeUser } from "../controllers/users-controller.js";
 
 const router = express.Router();
 
@@ -14,9 +13,5 @@ router
 	.get(controllers.getOneProduct)
 	.delete(controllers.deleteProduct)
 	.put(controllers.editProduct);
-
-router.get("/expiring-soon", controllers.getProductsExpiring);
-
-router.get("/expired", controllers.getProductsExpired);
 
 export default router;

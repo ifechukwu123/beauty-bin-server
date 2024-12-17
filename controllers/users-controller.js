@@ -80,7 +80,13 @@ const loginUser = async (req, res) => {
 };
 
 const authorizeUser = async (req, res, next) => {
-	const { authorization } = req.headers; //what if authorization is undefined?
+	if (!req.headers.authorization) {
+		return res
+			.status(403)
+			.json({ message: "Please provide an authorization token" });
+	}
+
+	const { authorization } = req.headers;
 	const jwtToken = authorization.split(" ")[1];
 
 	try {
@@ -92,7 +98,7 @@ const authorizeUser = async (req, res, next) => {
 		req.user = user[0];
 		next();
 	} catch (error) {
-		//what can i do if token is invalid?
+		//what can i do if token is invalid? console.log(error)
 		res.status(400).send(`Unable to authorize user: ${error}`);
 	}
 };

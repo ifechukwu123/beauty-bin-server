@@ -4,9 +4,7 @@ import config from "../knexfile.js";
 const knex = initKnex(config);
 
 const getAllProducts = async (req, res) => {
-	//verify user
-
-	const userId = 1;
+	const userId = req.user.id;
 
 	try {
 		const products = await knex("products")
@@ -30,74 +28,8 @@ const getAllProducts = async (req, res) => {
 	}
 };
 
-const getProductsExpiring = async (req, res) => {
-	//verify user
-
-	const userId = 1;
-
-	try {
-		const expiringProducts = await knex("notifications")
-			.where({
-				"notifications.user_id": userId,
-				type: "aboutToExpire",
-			})
-			.join("products", "products.id", "product_id")
-			.join("categories", "categories.id", "products.category_id")
-			.select(
-				"products.id",
-				"products.name",
-				"brand",
-				"batchNumber",
-				"categories.name as category",
-				"dateOpened",
-				"image",
-				"expirationDate",
-				"status as notification_status"
-			);
-		res.json(expiringProducts);
-	} catch (error) {
-		res
-			.status(500)
-			.json({ message: `Unable to retrieve expiring products: ${error}` });
-	}
-};
-
-const getProductsExpired = async (req, res) => {
-	//verify user
-
-	const userId = 1;
-
-	try {
-		const expiredProducts = await knex("notifications")
-			.where({
-				"notifications.user_id": userId,
-				type: "expired",
-			})
-			.join("products", "products.id", "product_id")
-			.join("categories", "categories.id", "products.category_id")
-			.select(
-				"products.id",
-				"products.name",
-				"brand",
-				"batchNumber",
-				"categories.name as category",
-				"dateOpened",
-				"image",
-				"expirationDate",
-				"status as notification_status"
-			);
-		res.json(expiredProducts);
-	} catch (error) {
-		res
-			.status(500)
-			.json({ message: `Unable to retrieve expired products: ${error}` });
-	}
-};
-
 const getOneProduct = async (req, res) => {
-	//verify user
-
-	const userId = 1;
+	const userId = req.user.id;
 	const { id } = req.params;
 
 	try {
@@ -133,8 +65,7 @@ const getOneProduct = async (req, res) => {
 };
 
 const addNewProduct = async (req, res) => {
-	//verify user
-	const userId = 1;
+	const userId = req.user.id;
 
 	const { name, brand, batchNumber, category, dateOpened, expirationDate } =
 		req.body;
@@ -193,14 +124,12 @@ const addNewProduct = async (req, res) => {
 	} catch (error) {
 		res
 			.status(500)
-			.json({ message: `Unable to add new makeup product ${id}: ${error}` });
+			.json({ message: `Unable to add new makeup product: ${error}` });
 	}
 };
 
 const deleteProduct = async (req, res) => {
-	//verify user
-
-	const userId = 1;
+	const userId = req.user.id;
 	const { id } = req.params;
 
 	try {
@@ -226,9 +155,7 @@ const deleteProduct = async (req, res) => {
 };
 
 const editProduct = async (req, res) => {
-	//verify user
-	const userId = 1;
-
+	const userId = req.user.id;
 	const { name, brand, batchNumber, category, dateOpened, expirationDate } =
 		req.body;
 	const { id } = req.params;
@@ -288,6 +215,4 @@ export {
 	addNewProduct,
 	deleteProduct,
 	editProduct,
-	getProductsExpiring,
-	getProductsExpired,
 };

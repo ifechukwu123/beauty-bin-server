@@ -4,8 +4,7 @@ import config from "../knexfile.js";
 const knex = initKnex(config);
 
 const getWishlist = async (req, res) => {
-	//verify user
-	const userId = 1;
+	const userId = req.user.id;
 
 	try {
 		const wishlist = await knex("wishlist")
@@ -19,15 +18,13 @@ const getWishlist = async (req, res) => {
 };
 
 const addWishlistItem = async (req, res) => {
-	//verify user?
-	const userId = 1;
-
+	const userId = req.user.id;
 	const { name, brand, image, id } = req.body;
 
 	//validate request body
 
 	try {
-		//search if the item is already in the wishlist
+		//check if the item is already in the wishlist
 		const wishItem = await knex("wishlist").where({ product_id: id });
 
 		if (wishItem.length === 0) {
@@ -53,9 +50,7 @@ const addWishlistItem = async (req, res) => {
 };
 
 const deleteWishlistItem = async (req, res) => {
-	//verify user?
-	const userId = 1;
-
+	const userId = req.user.id;
 	const { id } = req.params;
 
 	try {
