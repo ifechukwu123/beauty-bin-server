@@ -3,10 +3,7 @@ import config from "../knexfile.js";
 
 const knex = initKnex(config);
 
-const findExpiringProducts = async () => {
-	//verify user
-	const userId = 1;
-
+const findExpiringProducts = async (user) => {
 	const today = new Date();
 	const monthFromToday = new Date(today);
 	monthFromToday.setMonth(today.getMonth() + 1);
@@ -16,7 +13,7 @@ const findExpiringProducts = async () => {
 
 	try {
 		const expiringProducts = await knex("products")
-			.where({ user_id: userId })
+			.where({ user_id: user.id })
 			.andWhere("expirationDate", ">", todayFormatted)
 			.andWhere("expirationDate", "<=", monthFromTodayFormatted);
 
@@ -26,15 +23,12 @@ const findExpiringProducts = async () => {
 	}
 };
 
-const findExpiredProducts = async () => {
-	//verify user
-	const userId = 1;
-
+const findExpiredProducts = async (user) => {
 	const today = new Date().toISOString().split("T")[0];
 
 	try {
 		const expiredProducts = await knex("products")
-			.where({ user_id: userId })
+			.where({ user_id: user.id })
 			.andWhere("expirationDate", "<=", today);
 
 		return expiredProducts;
@@ -44,57 +38,58 @@ const findExpiredProducts = async () => {
 };
 
 const updateNotificationsTable = async () => {
-	//verify user
-	const userId = 1;
+	const users = await knex("users").select("id", "email");
 
-	try {
-		const expiring = await findExpiringProducts();
-		const expired = await findExpiredProducts();
+	users.forEach(async (user) => {
+		try {
+			const expiring = await findExpiringProducts(user);
+			const expired = await findExpiredProducts(user);
 
-		expiring.forEach(async (product) => {
-			const notification = await knex("notifications").where({
-				user_id: userId,
-				product_id: product.id,
-			});
-
-			if (notification.length === 0) {
-				await knex("notifications").insert({
-					user_id: product.user_id,
+			expiring.forEach(async (product) => {
+				const notification = await knex("notifications").where({
+					user_id: user.id,
 					product_id: product.id,
-					type: "aboutToExpire",
-					status: "unread",
 				});
-			}
-		});
 
-		expired.forEach(async (product) => {
-			const notification = await knex("notifications").where({
-				user_id: userId,
-				product_id: product.id,
-			});
-
-			if (notification.length === 0) {
-				await knex("notifications").insert({
-					user_id: product.user_id,
-					product_id: product.id,
-					type: "expired",
-					status: "unread",
-				});
-			} else {
-				const notificationProduct = notification[0];
-
-				if (notificationProduct.type === "aboutToExpire") {
-					await knex("notifications")
-						.where({ user_id: userId, product_id: product.id })
-						.update({ type: "expired", status: "unread" });
+				if (notification.length === 0) {
+					await knex("notifications").insert({
+						user_id: product.user_id,
+						product_id: product.id,
+						type: "aboutToExpire",
+						status: "unread",
+					});
 				}
-			}
-		});
+			});
 
-		console.log("Update done!");
-	} catch (error) {
-		console.error(`Unable to update notifications table: ${error}`);
-	}
+			expired.forEach(async (product) => {
+				const notification = await knex("notifications").where({
+					user_id: userId,
+					product_id: product.id,
+				});
+
+				if (notification.length === 0) {
+					await knex("notifications").insert({
+						user_id: product.user_id,
+						product_id: product.id,
+						type: "expired",
+						status: "unread",
+					});
+				} else {
+					const notificationProduct = notification[0];
+
+					if (notificationProduct.type === "aboutToExpire") {
+						await knex("notifications")
+							.where({ user_id: user.id, product_id: product.id })
+							.update({ type: "expired", status: "unread" });
+					}
+				}
+			});
+
+			console.log("Update done!");
+		} catch (error) {
+			console.error(`Unable to update notifications table: ${error}`);
+		}
+	});
 };
 
 export default updateNotificationsTable;

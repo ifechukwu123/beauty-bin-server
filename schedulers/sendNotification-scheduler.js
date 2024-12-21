@@ -99,6 +99,4 @@ const sendNotification = async (io) => {
 	});
 };
 
-sendNotification();
-
 export default sendNotification;
