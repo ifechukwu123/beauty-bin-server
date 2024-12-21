@@ -79,25 +79,8 @@ const loginUser = async (req, res) => {
 	}
 };
 
-const getUserProfile = async (req, res) => {
-	const userId = req.user.id;
-
-	try {
-		const user = await knex("users")
-			.where({ id: userId })
-			.select("id", "email");
-
-		if (!user.length) {
-			return res
-				.status(404)
-				.json({ message: `Cannot find user with id ${userId}` });
-		}
-		res.json(user[0]);
-	} catch (error) {
-		res
-			.status(500)
-			.send(`Unable to retrieve profile for user with id ${userId}: ${error}`);
-	}
+const getUserProfile = (req, res) => {
+	res.json(req.user);
 };
 
 const authorizeUser = async (req, res, next) => {
