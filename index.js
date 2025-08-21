@@ -25,6 +25,10 @@ app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.static("./public"));
 
+app.get("/", (req, res) => {
+	res.send(`<h1>Welcome to my Express App</h1>`);
+});
+
 app.use("/users", usersRoutes);
 app.use("/products", authorizeUser, productRoutes);
 app.use("/categories", categoryRoutes);
