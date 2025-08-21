@@ -23,8 +23,6 @@ const io = new Server(server, {
 
 app.use(express.json());
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
-
-console.log(process.env.CORS_ORIGIN);
 app.use(express.static("./public"));
 
 app.use("/users", usersRoutes);
