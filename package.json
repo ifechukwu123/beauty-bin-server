@@ -24,6 +24,7 @@
 	},
 	"contributors": [],
 	"scripts": {
+		"start": "node index.js",
 		"dev": "node --watch index.js",
 		"migrate": "npx knex migrate:latest",
 		"migrate:up": "npx knex migrate:up",
