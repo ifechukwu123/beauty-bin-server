@@ -32,7 +32,8 @@ app.use("/wishlist", authorizeUser, wishlistRoutes);
 
 //Scheduled task
 cron.schedule(
-	"0 0 * * *",
+	"1 * * * *",
+	// "0 0 * * *",
 	async () => {
 		try {
 			await updateNotificationsTable();
